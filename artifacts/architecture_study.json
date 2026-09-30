@@ -1,68 +1,68 @@
 {
   "A_current": {
     "model": {
-      "n": 102081,
-      "mae": 22.574296001338094,
-      "rmse": 101.54821354778798,
-      "wape": 0.15235250263468234,
-      "bias": -0.042142562404193507
+      "n": 81817,
+      "mae": 22.598119215114135,
+      "rmse": 98.56113866417766,
+      "wape": 0.15261311801361713,
+      "bias": -0.040030288469409474
     },
-    "p80_coverage": 0.7891282412985766,
+    "p80_coverage": 0.7870491462654461,
     "models_to_train": 2,
     "uses_traffic_forecast": true,
-    "Fruit and vegetable": 0.1759589396933233,
-    "Bakery": 0.13044294814864638,
-    "Meat and fish": 0.2298734019084657
+    "Fruit and vegetable": 0.1786757427239876,
+    "Bakery": 0.128977821638588,
+    "Meat and fish": 0.227524465314223
   },
   "B_one_model": {
     "model": {
-      "n": 102081,
-      "mae": 25.607644154155274,
-      "rmse": 166.1271844747519,
-      "wape": 0.17282437836522982,
-      "bias": -0.07015481826082423
+      "n": 81817,
+      "mae": 25.819662360757185,
+      "rmse": 169.30204461960548,
+      "wape": 0.17436934204234764,
+      "bias": -0.07176635758096234
     },
-    "p80_coverage": 0.7880310733633096,
+    "p80_coverage": 0.7865480279159588,
     "models_to_train": 1,
     "uses_traffic_forecast": true,
-    "Fruit and vegetable": 0.18236665387006135,
-    "Bakery": 0.1623731608015265,
-    "Meat and fish": 0.22964093400845279,
+    "Fruit and vegetable": 0.1842963044553016,
+    "Bakery": 0.16384777826381494,
+    "Meat and fish": 0.22743191901822798,
     "adopt": false,
-    "worst_category_change": 0.24478297298596796
+    "worst_category_change": 0.27035622235066825
   },
   "C_no_traffic_forecast": {
     "model": {
-      "n": 102081,
-      "mae": 22.379409365533547,
-      "rmse": 99.4448464562891,
-      "wape": 0.1510372249979792,
-      "bias": -0.03931005150954453
+      "n": 81817,
+      "mae": 22.37850943906074,
+      "rmse": 97.68583166781445,
+      "wape": 0.15113001526728922,
+      "bias": -0.0385717820023394
     },
-    "p80_coverage": 0.7868751285743674,
+    "p80_coverage": 0.7861813559529193,
     "models_to_train": 2,
     "uses_traffic_forecast": false,
-    "Fruit and vegetable": 0.1756215387699685,
-    "Bakery": 0.12830128085576092,
-    "Meat and fish": 0.23047212357326366,
+    "Fruit and vegetable": 0.17456234044177096,
+    "Bakery": 0.12937438080236527,
+    "Meat and fish": 0.22664615273897162,
     "adopt": true,
-    "worst_category_change": 0.0026045712980589672
+    "worst_category_change": 0.0030746306515275837
   },
   "D_one_model_no_traffic_forecast": {
     "model": {
-      "n": 102081,
-      "mae": 25.58654552642023,
-      "rmse": 165.30672479753846,
-      "wape": 0.17268198505482932,
-      "bias": -0.07151706053373937
+      "n": 81817,
+      "mae": 25.876363063242344,
+      "rmse": 169.5141301584715,
+      "wape": 0.17475226200650265,
+      "bias": -0.07261708879477065
     },
-    "p80_coverage": 0.7872473819809759,
+    "p80_coverage": 0.786413581529511,
     "models_to_train": 1,
     "uses_traffic_forecast": false,
-    "Fruit and vegetable": 0.18257034724161542,
-    "Bakery": 0.16189979585184533,
-    "Meat and fish": 0.2307910230391035,
+    "Fruit and vegetable": 0.18422315354393973,
+    "Bakery": 0.16454562123459213,
+    "Meat and fish": 0.228097223092651,
     "adopt": false,
-    "worst_category_change": 0.24115406888344992
+    "worst_category_change": 0.27576678799607535
   }
 }

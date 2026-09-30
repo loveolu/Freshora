@@ -1,58 +1,58 @@
 {
   "window": [
     "2024-01-20",
-    "2024-06-02"
+    "2024-05-05"
   ],
   "weather_ablation": {
     "with_weather": {
-      "n": 102081,
-      "mae": 22.574296001338094,
-      "rmse": 101.54821354778798,
-      "wape": 0.15235250263468234,
-      "bias": -0.042142562404193507
+      "n": 81817,
+      "mae": 22.37850943906074,
+      "rmse": 97.68583166781445,
+      "wape": 0.15113001526728922,
+      "bias": -0.0385717820023394
     },
     "without_weather": {
-      "n": 102081,
-      "mae": 22.354524314071224,
-      "rmse": 96.712884193417,
-      "wape": 0.15086927735220312,
-      "bias": -0.03757753957379415
+      "n": 81817,
+      "mae": 22.349044311938545,
+      "rmse": 95.4958652588568,
+      "wape": 0.1509310268081179,
+      "bias": -0.03766877619670689
     }
   },
   "tradeoff": [
     {
       "waste_cost_ratio": 0.1,
       "critical_ratio": 0.7499999999999999,
-      "model_waste_pct": 0.0013033791900676232,
-      "naive_waste_pct": 0.010395360046090403,
-      "model_lost_pct": 0.04841107321858537,
-      "naive_lost_pct": 0.06554491757293857
+      "model_waste_pct": 0.0012360437025566082,
+      "naive_waste_pct": 0.010600262556412372,
+      "model_lost_pct": 0.050244627580953015,
+      "naive_lost_pct": 0.06832327120639069
     },
     {
       "waste_cost_ratio": 0.25,
       "critical_ratio": 0.5454545454545454,
-      "model_waste_pct": 0.0004898077577994574,
-      "naive_waste_pct": 0.006282334275413954,
-      "model_lost_pct": 0.08627984176747722,
-      "naive_lost_pct": 0.11070138908203639
+      "model_waste_pct": 0.0004924945407737642,
+      "naive_waste_pct": 0.006360676432367369,
+      "model_lost_pct": 0.08484196906662204,
+      "naive_lost_pct": 0.11389750327109015
     },
     {
       "waste_cost_ratio": 0.5,
       "critical_ratio": 0.37499999999999994,
-      "model_waste_pct": 0.0002424085496618924,
-      "naive_waste_pct": 0.004137494663413849,
-      "model_lost_pct": 0.13305170594036642,
-      "naive_lost_pct": 0.16442258230910373
+      "model_waste_pct": 0.00025603215728247166,
+      "naive_waste_pct": 0.004152924520325417,
+      "model_lost_pct": 0.1273527139295431,
+      "naive_lost_pct": 0.16748485003523308
     },
     {
       "waste_cost_ratio": 1.0,
       "critical_ratio": 0.23076923076923075,
-      "model_waste_pct": 0.00013877057016150804,
-      "naive_waste_pct": 0.0026810189613186626,
-      "model_lost_pct": 0.18973414878802505,
-      "naive_lost_pct": 0.22878137501334378
+      "model_waste_pct": 0.00015406175629062666,
+      "naive_waste_pct": 0.002678866454276822,
+      "model_lost_pct": 0.17901796113206558,
+      "naive_lost_pct": 0.23143970994457863
     }
   ],
-  "total_demand_units": 15125492.986736186,
+  "total_demand_units": 12115015.69385419,
   "label": "SIMULATED waste and lost sales (FIFO shelf-life simulator), % of actual demand"
 }

@@ -33,6 +33,7 @@ from forecaster.models import traffic as stage1
 from forecaster.models.metrics import by_segment, summarize
 from forecaster.pipeline import lifecycle
 from forecaster.pipeline.dataset import store_calendar
+from forecaster.pipeline.experiment import SELECT_END
 from forecaster.pipeline.store_learning import shelf_cohorts
 from forecaster.seed import excluded_days, seed_anomaly_days, seed_stores
 from forecaster.weather import open_meteo as om
@@ -207,6 +208,9 @@ def main() -> None:
     rows = demand.training_rows(feat, excluded_days(engine))
     end = rows["date"].max()
     cutoff = end - pd.Timedelta(days=HOLDOUT_DAYS)
+    if cutoff < SELECT_END:  # the test must start after the last day any design choice was scored on
+        raise SystemExit(f"test window starts {(cutoff + pd.Timedelta(days=1)).date()}, inside the "
+                         f"design-selection window ending {SELECT_END.date()}")
     rows, onboard, onboarded = with_uploaded_history(engine, rows, cutoff, end, log)
     cand = lifecycle.train_candidate(rows, cutoff, TRAIN_START, extra_train=onboard)
     hold = rows[rows["date"] > cutoff].copy()

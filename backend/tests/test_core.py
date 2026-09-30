@@ -243,3 +243,16 @@ def test_briefing_template_is_four_bullets():
          "recent_model_error": {"days": 14, "wape": 0.12, "bias": -0.02}}
     lines = template(f).splitlines()
     assert len(lines) == 4 and all(l.startswith("- ") for l in lines) and "20% off" in lines[1]
+
+
+def test_design_choices_never_see_the_test_window():
+    """Three-way split: experiments score (CUTOFF, SELECT_END] on real series; the production test
+    window (the last 28 days, 2024-05-06 → 2024-06-02) starts after it."""
+    from forecaster.pipeline.experiment import CUTOFF, SELECT_END, selection_rows
+    from forecaster.pipeline.train_production import HOLDOUT_DAYS
+    days = pd.date_range("2024-01-01", "2024-06-02")
+    rows = pd.DataFrame({"date": np.repeat(days, 2), "series_id": ["Prague_1|1", "SYN-Prague_1|Eggs|0"] * len(days)})
+    sel = selection_rows(rows)
+    assert sel["date"].min() > CUTOFF and sel["date"].max() == SELECT_END
+    assert not sel["series_id"].str.startswith("SYN-").any()
+    assert days.max() - pd.Timedelta(days=HOLDOUT_DAYS) >= SELECT_END

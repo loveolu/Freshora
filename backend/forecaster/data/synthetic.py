@@ -23,9 +23,10 @@ CATEGORIES = {  # category → (products, price relative to the store's median p
     "Eggs": (4, 1.4, 1),
 }
 # Day-to-day noise (gamma shape; smaller = noisier). Dairy and eggs are staples, so their noise is set to
-# the measured noise of the real staple category: the volume-weighted overdispersion of demand_v6's
-# residuals on real Bakery over the 4-week holdout, 1/k <= 0.016 — an upper bound, since residuals
-# also contain model error. (The first version used k = 12, five times noisier than real staples.)
+# the measured noise of the real staple category: the volume-weighted overdispersion of the harness
+# model's residuals on real Bakery over the first 28 days of the selection window, 1/k <= 0.016 — an
+# upper bound, since residuals also contain model error (pipeline/noise_calibration.py; never the test
+# window). The first version used k = 12, five times noisier than real staples.
 DISPERSION_K = 62.0
 PROMO_DAY_SHARE = 0.06
 

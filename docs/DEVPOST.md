@@ -35,7 +35,8 @@ people instead of the bin.
 
 ## Results
 Headline test: the served model on the last four weeks of real sales it never trained on
-(2024-05-06 → 2024-06-02, 7 warehouses, real products only).
+(2024-05-06 → 2024-06-02, 7 warehouses, real products only). Three-way time split: every design
+choice was made on 2024-01-20 → 2024-05-05, so the test weeks were never used to choose anything.
 - **13.7% forecast error (WAPE), i.e. 86.3% accurate**, vs 22.5% for "same weekday last week" —
   39% less error. Bakery 88.8%, produce 83.6%, meat and fish 77.0%.
 - **Demo stores, live:** four weeks of day-by-day forecasts, each saved before that day's sales:
@@ -46,7 +47,7 @@ Headline test: the served model on the last four weeks of real sales it never tr
 - An earlier model generation, replayed Jan–Jun 2024 with weekly governed retraining: 14.4% error vs
   24.2% for "same weekday last week"; 10 challengers trained, 6 promoted, 4 rejected.
 - Holiday-proximity features cut pre-Easter error from 22.0% to 18.3%; seven discount types cut
-  error 15.7% → 15.2%.
+  error 15.45% → 15.11% (on the selection window).
 - Measured and **rejected**: dropping stockout days as targets, a produce specialist, per-store
   calibration, spike weighting, one multi-quantile model. Weather didn't help one day ahead.
 

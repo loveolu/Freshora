@@ -9,6 +9,7 @@ artifacts/*
 !artifacts/accuracy_experiments.json
 !artifacts/architecture_study.json
 !artifacts/policy_study.json
+!artifacts/noise_calibration.json
 *.parquet
 # python
 __pycache__/

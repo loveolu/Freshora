@@ -1,4 +1,4 @@
-"""Two measurements the pitch depends on, on the replay window (2024-01-20 → 2024-06-02):
+"""Two measurements the pitch depends on, on the selection window (2024-01-20 → 2024-05-05):
 
 1. Weather ablation on the fixed harness (the production holdout said weather hurts; confirm or
    refute on 4.5 months instead of 4 weeks).
@@ -22,7 +22,7 @@ from forecaster.features.build import WEATHER
 from forecaster.models import demand
 from forecaster.models.metrics import summarize
 from forecaster.pipeline import lifecycle
-from forecaster.pipeline.experiment import CUTOFF, START
+from forecaster.pipeline.experiment import CUTOFF, START, selection_rows
 from forecaster.seed import excluded_days
 
 
@@ -30,7 +30,7 @@ def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
     feat = pd.read_parquet(processed_dir() / "features_h1.parquet")
     rows = demand.training_rows(feat, excluded_days(get_engine()))
-    ev = rows[rows["date"] > CUTOFF].copy()
+    ev = selection_rows(rows).copy()
     out = {"window": [str((CUTOFF + pd.Timedelta(days=1)).date()), str(ev["date"].max().date())]}
 
     with_w = lifecycle.train_candidate(rows, CUTOFF, START)

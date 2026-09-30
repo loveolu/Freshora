@@ -1,7 +1,11 @@
 """Accuracy experiments on a fixed harness: train once on data through 2024-01-19 and score the
-identical replay rows (2024-01-20 → 2024-06-02). Levers are added one at a time on top of the
-kept ones; a lever is kept only if global WAPE drops by ≥ 0.003 and no major category gets more
-than 5% worse.
+identical real-series rows of the selection window (2024-01-20 → 2024-05-05). Levers are added one
+at a time on top of the kept ones; a lever is kept only if global WAPE drops by ≥ 0.003 and no major
+category gets more than 5% worse.
+
+Three-way split: train ≤ 2024-01-19 | select 2024-01-20 → 2024-05-05 | test 2024-05-06 → 2024-06-02.
+Every design choice (this file, architecture_study, policy_study, the synthetic noise level) is
+scored on the selection window only; the test window train_production reports is never used to choose.
 
     python -m forecaster.pipeline.experiment
 """
@@ -14,6 +18,7 @@ import time
 import pandas as pd
 
 from forecaster.config import settings
+from forecaster.data import synthetic
 from forecaster.data.prepare import processed_dir
 from forecaster.db.schema import get_engine
 from forecaster.features.build import DISCOUNT_TYPES
@@ -22,7 +27,8 @@ from forecaster.models.metrics import summarize
 from forecaster.pipeline import lifecycle
 from forecaster.seed import excluded_days
 
-CUTOFF = pd.Timestamp("2024-01-19")
+CUTOFF = pd.Timestamp("2024-01-19")  # harness models train on data through this day
+SELECT_END = pd.Timestamp("2024-05-05")  # last day any design choice is scored on
 START = pd.Timestamp("2022-01-01")
 NEW_PRICE = (*DISCOUNT_TYPES, "discount_max_lag_7")
 MIN_GAIN = 0.003
@@ -35,6 +41,12 @@ LEVERS = [  # (name, config change, include the fs_v5 discount features?)
     ("4_store_calibration", {"store_calibration": True}, True),
     ("5_volatility_weight", {"volatility_weight": True}, True),
 ]
+
+
+def selection_rows(rows: pd.DataFrame) -> pd.DataFrame:
+    """Real-series rows in (CUTOFF, SELECT_END] — the only rows design choices are scored on."""
+    real = ~rows["series_id"].astype(str).str.startswith(synthetic.SYNTHETIC_PREFIX)
+    return rows[(rows["date"] > CUTOFF) & (rows["date"] <= SELECT_END) & real]
 
 
 def score(pred, df) -> dict:
@@ -62,7 +74,7 @@ def main() -> None:
     t0 = time.time()
     feat = pd.read_parquet(processed_dir() / "features_h1.parquet")
     rows = demand.training_rows(feat, excluded_days(get_engine()))
-    eval_rows = rows[rows["date"] > CUTOFF]  # identical scoring rows for every experiment
+    eval_rows = selection_rows(rows)  # identical scoring rows for every experiment
 
     def run(cfg, with_new):
         cand = lifecycle.train_candidate(rows, CUTOFF, START, exclude=() if with_new else NEW_PRICE, config=cfg)
