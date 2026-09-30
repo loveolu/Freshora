@@ -5,7 +5,7 @@ turn into order quantities, markdowns and donations — and a ledger that checks
 against what actually sold.
 
 > Fork of [at25085/Freshora](https://github.com/at25085/Freshora), built with my team at HackGT 13
-> (September 2026). My part: the Python backend, the forecasting model and the data pipeline. After
+> (September 2026) — [Devpost](https://devpost.com/software/freshora). My part: the Python backend, the forecasting model and the data pipeline. After
 > the hackathon I reran the model's design studies on a clean three-way time split (below). The
 > hosted demo is offline; screenshots below.
 

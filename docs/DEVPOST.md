@@ -1,7 +1,7 @@
 # Devpost write-up (draft)
 
 **Main track: A Marina's Mission (Social Good).** MLH: Tiger Data (TimescaleDB), Gemini, Vultr, .Tech.
-Hosted demo (freshora.tech) is offline since the hackathon; screenshots are in the README.
+Devpost: https://devpost.com/software/freshora · the hosted demo (freshora.tech) is offline since the hackathon; screenshots are in the README.
 
 ## Tagline
 Keep fresh food out of the bin: forecasts that act on themselves — and prove they were right.
